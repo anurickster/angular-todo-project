@@ -1,0 +1,51 @@
+<div class="todo-container">
+  <div class="todo-component">
+    <header class="todo-head">
+      <img
+        src="https://angular.io/assets/images/logos/angular/angular.svg"
+        width="100rem"
+      />
+      <h1>Todo List With Angular</h1>
+    </header>
+    <form (submit)="addTodo()" class="input-group mb-3">
+      <input
+        name="inpuTodo"
+        [(ngModel)]="inputTodo"
+        type="text"
+        class="form-control"
+        id="basic-url"
+        aria-describedby="basic-addon3"
+      />
+      <button type="submit" class="input-group-text" id="basic-addon3">
+        Add Todo
+      </button>
+    </form>
+
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 10%">#</th>
+          <th scope="col">Tasks</th>
+          <th scope="col" class="centered">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let todo of todos; let i = index"
+          class="{{ todo.completed ? 'table-success' : 'content' }}"
+          (click)="toggleTodo(todo)"
+        >
+          <th scope="row">{{ i + 1 }}</th>
+          <td ngClass="{{ todo.completed ? 'done' : '' }}" style="width: 40%">
+            {{ todo.content }}
+          </td>
+          <td style="width: 10%">
+            <button (click)="deleteTodo(todo)" class="btn btn-danger centered">
+              X
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
